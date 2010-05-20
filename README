@@ -1,0 +1,35 @@
+========= ====== == ========
+i18nPROOF NUMBER TO CURRENCY
+========= ====== == ========
+
+When you are using I18n and want to use number_to_currency helper you can encounter
+some trouble with that. This is my fast solution when all you need is displaying one
+currency and localization does not matter.
+
+This plugin extend application_helper with four currency methods (look to example section),
+and one that allows you to build your own currency method if you need.
+
+Installation:
+=============
+ruby script/plugin install git@github.com/kayinrage/i18n_proof_number_to_currency.git
+
+Examples:
+=========
+after install you can use this methods in your views:
+number_to_euro(88.88) # => 88.88€
+number_to_us_dollar(88.88) # => $88.88
+number_to_pound(88.88) # => £88.88
+number_to_yen(88.88) # => ¥88.88
+
+and you can simply add your own method if you like using
+i18n_proof_number_to_currency(number, precision, unit, separator, delimiter, format)
+
+for example you can add to your application_helper:
+
+def number_to_pln(number)
+  i18n_proof_number_to_currency(number, 2, "zł", ",", " ", "%n%u")
+end
+
+
+
+Copyright (c) 2010 Irenuesz Skrobis, released under the MIT license
